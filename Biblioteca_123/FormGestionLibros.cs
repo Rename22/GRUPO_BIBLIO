@@ -33,8 +33,8 @@ namespace Biblioteca_123
         private void btnAñadir_Click(object sender, EventArgs e)
         {
             var formLibro = new FormLibro();
-            formLibro.ShowDialog();
-            CargarLibros();
+            formLibro.Show();
+            this.Hide();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -59,8 +59,9 @@ namespace Biblioteca_123
                     };
 
                     var formLibro = new FormLibro(libro);
-                    formLibro.ShowDialog();
-                    CargarLibros(); // Refrescar la lista de libros después de editar uno
+                    formLibro.FormClosed += new FormClosedEventHandler(FormLibro_FormClosed);
+                    formLibro.Show();
+                    this.Hide();
                 }
             }
         }
@@ -80,5 +81,46 @@ namespace Biblioteca_123
                 }
             }
         }
+
+        private void btnVerDetalles_Click(object sender, EventArgs e)
+        {
+            if (dgvLibros.SelectedRows.Count > 0)
+            {
+                var id = Convert.ToInt32(dgvLibros.SelectedRows[0].Cells["Id"].Value);
+                var c = new Conexion();
+                var sql = $"SELECT * FROM Libros WHERE Id = {id}";
+                var dt = c.ObtenerDatos(sql);
+
+                if (dt.Rows.Count > 0)
+                {
+                    var libro = new Libro
+                    {
+                        Id = id,
+                        Titulo = dt.Rows[0]["Titulo"].ToString(),
+                        Autor = dt.Rows[0]["Autor"].ToString(),
+                        Editorial = dt.Rows[0]["Editorial"].ToString(),
+                        AnioPublicacion = Convert.ToInt32(dt.Rows[0]["AnioPublicacion"]),
+                        Categoria = dt.Rows[0]["Categoria"].ToString()
+                    };
+
+                    var formDetalleLibro = new FormDetalleLibro(libro);
+                    formDetalleLibro.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un libro de la lista para ver sus detalles.");
+            }
+        }
+
+        private void dgvLibros_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void FormLibro_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
+            CargarLibros();
+        }   
     }
 }

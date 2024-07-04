@@ -117,9 +117,9 @@ namespace Biblioteca_123
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var formLogin = new FormLogin();
-            formLogin.Show();
-            this.Close();
+            var Formulario = new FormLogin();
+            Formulario.Show();
+            this.Hide();
         }
 
         private void cbPerfil_SelectedIndexChanged(object sender, EventArgs e)

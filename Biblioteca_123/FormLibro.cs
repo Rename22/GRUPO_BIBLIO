@@ -85,5 +85,12 @@ namespace Biblioteca_123
 
             return true;
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            var Formulario = new FormGestionLibros();
+            Formulario.Show();
+            this.Hide();
+        }
     }
 }

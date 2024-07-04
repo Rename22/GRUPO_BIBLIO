@@ -32,22 +32,24 @@
             this.btnAñadir = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnVerDetalles = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibros)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvLibros
             // 
             this.dgvLibros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLibros.Location = new System.Drawing.Point(30, 69);
+            this.dgvLibros.Location = new System.Drawing.Point(12, 12);
+            this.dgvLibros.MultiSelect = false;
             this.dgvLibros.Name = "dgvLibros";
             this.dgvLibros.RowHeadersWidth = 51;
-            this.dgvLibros.RowTemplate.Height = 24;
-            this.dgvLibros.Size = new System.Drawing.Size(563, 343);
+            this.dgvLibros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvLibros.Size = new System.Drawing.Size(760, 400);
             this.dgvLibros.TabIndex = 0;
             // 
             // btnAñadir
             // 
-            this.btnAñadir.Location = new System.Drawing.Point(632, 107);
+            this.btnAñadir.Location = new System.Drawing.Point(12, 439);
             this.btnAñadir.Name = "btnAñadir";
             this.btnAñadir.Size = new System.Drawing.Size(139, 46);
             this.btnAñadir.TabIndex = 1;
@@ -57,7 +59,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(632, 211);
+            this.btnEditar.Location = new System.Drawing.Point(203, 441);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(139, 44);
             this.btnEditar.TabIndex = 2;
@@ -67,7 +69,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(632, 313);
+            this.btnEliminar.Location = new System.Drawing.Point(633, 439);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(139, 45);
             this.btnEliminar.TabIndex = 3;
@@ -75,11 +77,22 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // btnVerDetalles
+            // 
+            this.btnVerDetalles.Location = new System.Drawing.Point(401, 439);
+            this.btnVerDetalles.Name = "btnVerDetalles";
+            this.btnVerDetalles.Size = new System.Drawing.Size(139, 44);
+            this.btnVerDetalles.TabIndex = 4;
+            this.btnVerDetalles.Text = "DETALLES";
+            this.btnVerDetalles.UseVisualStyleBackColor = true;
+            this.btnVerDetalles.Click += new System.EventHandler(this.btnVerDetalles_Click);
+            // 
             // FormGestionLibros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(797, 534);
+            this.Controls.Add(this.btnVerDetalles);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAñadir);
@@ -98,5 +111,6 @@
         private System.Windows.Forms.Button btnAñadir;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnVerDetalles;
     }
 }
