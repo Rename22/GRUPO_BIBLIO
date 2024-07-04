@@ -15,9 +15,34 @@ namespace Biblioteca_123
         public FormGestionLibros()
         {
             InitializeComponent();
+            CargarCategorias();
             CargarLibros();
         }
-
+        private void CargarCategorias()
+        {
+            var c = new Conexion();
+            var sql = "SELECT DISTINCT Categoria FROM Libros";
+            var dt = c.ObtenerDatos(sql);
+            cmbCategorias.Items.Clear();
+            cmbCategorias.Items.Add("Todas");
+            foreach (DataRow row in dt.Rows)
+            {
+                cmbCategorias.Items.Add(row["Categoria"].ToString());
+            }
+            cmbCategorias.SelectedIndex = 0;
+        }
+        private void FiltrarLibros(string categoria)
+        {
+            var c = new Conexion();
+            var sql = categoria == "Todas" ? "SELECT * FROM Libros" : $"SELECT * FROM Libros WHERE Categoria = '{categoria}'";
+            var dt = c.ObtenerDatos(sql);
+            dgvLibros.DataSource = dt;
+        }
+        private void cmbCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string categoriaSeleccionada = cmbCategorias.SelectedItem.ToString();
+            FiltrarLibros(categoriaSeleccionada);
+        }
         private void FormGestionLibros_Load(object sender, EventArgs e)
         {
 
@@ -121,6 +146,8 @@ namespace Biblioteca_123
         {
             this.Show();
             CargarLibros();
-        }   
+        }
+
+        
     }
 }

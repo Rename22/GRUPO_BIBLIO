@@ -61,7 +61,9 @@ namespace Biblioteca_123
                 }
 
                 MessageBox.Show("Libro guardado correctamente");
-                this.Close();
+                var form = new FormGestionLibros();
+                form.Show();
+                this.Hide();
             }
         }
 
